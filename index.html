@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing do seu site · Alderige Solutions</title>
+<meta name="description" content="Conte como você quer o seu site — leva uns 5 minutos.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#080b12; --panel:#0f1522; --panel2:#141c2c; --line:rgb(137 147 164/.2); --line2:rgb(137 147 164/.4); --tx:#f5f7fa; --mut:#8993a4; --blue:#0066ff; --cyan:#00d9ff; --ok:#20c997; --bad:#ff5470 }
+  * { box-sizing:border-box }
+  html,body { margin:0; background:var(--bg); color:var(--tx); font:16px/1.5 Inter,system-ui,sans-serif; -webkit-font-smoothing:antialiased }
+  body { background: radial-gradient(1200px 500px at 80% -10%, rgb(0 102 255/.18), transparent 60%), var(--bg); min-height:100dvh }
+  .wrap { max-width:720px; margin:0 auto; padding:32px 16px 80px }
+  header .logo { font:600 15px 'Space Grotesk',sans-serif; letter-spacing:.02em; color:var(--mut) }
+  header .logo b { color:var(--tx) }
+  h1 { font:600 clamp(28px,6vw,40px)/1.1 'Space Grotesk',sans-serif; margin:18px 0 8px; letter-spacing:-.02em }
+  h2 { font:600 22px 'Space Grotesk',sans-serif; margin:0 0 4px }
+  .lead { color:var(--mut); margin:0 0 24px }
+  .prog { display:flex; gap:6px; margin:0 0 22px }
+  .prog i { flex:1; height:4px; border-radius:99px; background:var(--panel2) }
+  .prog i.on { background:linear-gradient(90deg,var(--blue),var(--cyan)) }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px }
+  .step { display:none } .step.on { display:block }
+  .sub { color:var(--mut); font-size:14px; margin:0 0 20px }
+  .f { margin:0 0 18px }
+  .f > label, .f > .lb { display:block; font-weight:500; font-size:14px; margin:0 0 6px }
+  .f small { display:block; color:var(--mut); font-size:12.5px; margin-top:4px }
+  input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea { width:100%; background:var(--bg); color:var(--tx); border:1px solid var(--line2); border-radius:10px; padding:11px 12px; font:inherit; font-size:15px }
+  textarea { min-height:96px; resize:vertical }
+  input:focus,select:focus,textarea:focus { outline:2px solid var(--blue); outline-offset:-1px; border-color:transparent }
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px }
+  @media (max-width:560px){ .g2 { grid-template-columns:1fr } }
+  .opts { display:flex; flex-wrap:wrap; gap:8px }
+  .opts label { position:relative; cursor:pointer }
+  .opts input { position:absolute; opacity:0; pointer-events:none }
+  .opts span { display:inline-block; padding:8px 14px; border:1px solid var(--line2); border-radius:99px; font-size:14px; color:var(--mut); transition:.15s }
+  .opts input:checked + span { border-color:var(--blue); background:rgb(0 102 255/.15); color:var(--tx) }
+  .opts input:focus-visible + span { outline:2px solid var(--cyan); outline-offset:2px }
+  .nav { display:flex; justify-content:space-between; gap:10px; margin-top:24px }
+  button { cursor:pointer; font:600 15px Inter,sans-serif; border-radius:10px; padding:12px 20px; border:1px solid var(--line2); background:var(--panel2); color:var(--tx) }
+  button.p { background:var(--blue); border-color:var(--blue); color:#fff }
+  button.wa { background:#1fa855; border-color:#1fa855; color:#fff }
+  button:disabled { opacity:.6; cursor:default }
+  .err { color:var(--bad); font-size:13px; margin-top:6px; display:none }
+  .f.invalid .err { display:block } .f.invalid input, .f.invalid select { border-color:var(--bad) }
+  .ok { text-align:center; padding:12px 0 }
+  .ok .ic { width:60px; height:60px; border-radius:50%; background:rgb(32 201 151/.15); color:var(--ok); display:grid; place-items:center; margin:0 auto 14px; font-size:30px }
+  .resumo { background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:14px; font-size:13.5px; white-space:pre-wrap; max-height:260px; overflow:auto; text-align:left; color:var(--mut) }
+  footer { color:var(--mut); font-size:12.5px; text-align:center; margin-top:28px }
+  footer a { color:var(--mut) }
+  .hp { position:absolute; left:-9999px }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><b>Alderige</b> Solutions</div>
+    <h1>Vamos montar o seu site</h1>
+    <p class="lead" id="intro">Responda com calma — leva uns 5 minutos. Quanto mais detalhe, mais o site fica com a sua cara. Se não souber algo, pode deixar em branco.</p>
+  </header>
+
+  <div class="prog" id="prog" aria-hidden="true"></div>
+
+  <form class="card" id="form" novalidate>
+    <input type="text" name="_hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="lead_id">
+
+    <!-- 1 -->
+    <section class="step on" data-titulo="Sobre você">
+      <h2>1. Sobre você e a empresa</h2>
+      <p class="sub">Para a gente saber com quem está falando.</p>
+      <div class="g2">
+        <div class="f"><label for="responsavel">Seu nome *</label><input type="text" id="responsavel" name="responsavel" required autocomplete="name"><div class="err">Informe seu nome</div></div>
+        <div class="f"><label for="empresa">Nome da empresa *</label><input type="text" id="empresa" name="empresa" required autocomplete="organization"><div class="err">Informe o nome da empresa</div></div>
+      </div>
+      <div class="g2">
+        <div class="f"><label for="whatsapp">WhatsApp *</label><input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="(00) 90000-0000"><div class="err">Informe um WhatsApp válido</div></div>
+        <div class="f"><label for="email">E-mail</label><input type="email" id="email" name="email" autocomplete="email"></div>
+      </div>
+      <div class="g2">
+        <div class="f"><label for="ramo">Ramo / o que a empresa faz *</label><input type="text" id="ramo" name="ramo" required placeholder="Ex.: barbearia, clínica odontológica"><div class="err">Conte o ramo da empresa</div></div>
+        <div class="f"><label for="cidade">Cidade / região que atende</label><input type="text" id="cidade" name="cidade"></div>
+      </div>
+      <div class="g2">
+        <div class="f"><label for="plano">Plano escolhido</label>
+          <select id="plano" name="plano"><option value="">Ainda não sei</option><option value="essencial">Essencial</option><option value="profissional">Profissional</option><option value="premium">Premium</option></select></div>
+        <div class="f"><label for="instagram">Instagram da empresa</label><input type="text" id="instagram" name="instagram" placeholder="@suaempresa"></div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="step" data-titulo="Objetivo">
+      <h2>2. Objetivo do site</h2>
+      <p class="sub">O que o site precisa fazer pelo seu negócio.</p>
+      <div class="f"><span class="lb">Principais objetivos (marque quantos quiser)</span>
+        <div class="opts" data-name="objetivos">
+          <label><input type="checkbox" value="Receber contatos pelo WhatsApp"><span>Receber contatos pelo WhatsApp</span></label>
+          <label><input type="checkbox" value="Aparecer no Google"><span>Aparecer no Google</span></label>
+          <label><input type="checkbox" value="Mostrar serviços e preços"><span>Mostrar serviços e preços</span></label>
+          <label><input type="checkbox" value="Passar mais credibilidade"><span>Passar mais credibilidade</span></label>
+          <label><input type="checkbox" value="Agendamentos online"><span>Agendamentos online</span></label>
+          <label><input type="checkbox" value="Vender produtos"><span>Vender produtos</span></label>
+          <label><input type="checkbox" value="Mostrar portfólio / trabalhos"><span>Mostrar portfólio / trabalhos</span></label>
+        </div></div>
+      <div class="f"><label for="publico">Quem são seus clientes?</label><textarea id="publico" name="publico" placeholder="Ex.: homens de 20 a 45 anos do bairro, famílias com pets, empresas da região…"></textarea></div>
+      <div class="f"><label for="diferenciais">O que faz vocês serem escolhidos no lugar do concorrente?</label><textarea id="diferenciais" name="diferenciais" placeholder="Atendimento, preço, tempo de mercado, qualidade, localização…"></textarea></div>
+      <div class="f"><label for="servicos">Serviços ou produtos que devem aparecer no site</label><textarea id="servicos" name="servicos" placeholder="Um por linha. Se quiser, com preço."></textarea></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="step" data-titulo="Páginas">
+      <h2>3. Páginas e recursos</h2>
+      <p class="sub">O que você quer que tenha no site.</p>
+      <div class="f"><span class="lb">Seções / páginas</span>
+        <div class="opts" data-name="paginas">
+          <label><input type="checkbox" value="Início" checked><span>Início</span></label>
+          <label><input type="checkbox" value="Sobre nós"><span>Sobre nós</span></label>
+          <label><input type="checkbox" value="Serviços"><span>Serviços</span></label>
+          <label><input type="checkbox" value="Produtos / Catálogo"><span>Produtos / Catálogo</span></label>
+          <label><input type="checkbox" value="Cardápio"><span>Cardápio</span></label>
+          <label><input type="checkbox" value="Galeria de fotos"><span>Galeria de fotos</span></label>
+          <label><input type="checkbox" value="Depoimentos"><span>Depoimentos</span></label>
+          <label><input type="checkbox" value="Equipe"><span>Equipe</span></label>
+          <label><input type="checkbox" value="Perguntas frequentes"><span>Perguntas frequentes</span></label>
+          <label><input type="checkbox" value="Blog"><span>Blog</span></label>
+          <label><input type="checkbox" value="Contato"><span>Contato</span></label>
+        </div></div>
+      <div class="f"><span class="lb">Recursos</span>
+        <div class="opts" data-name="recursos">
+          <label><input type="checkbox" value="Botão de WhatsApp" checked><span>Botão de WhatsApp</span></label>
+          <label><input type="checkbox" value="Mapa / como chegar"><span>Mapa / como chegar</span></label>
+          <label><input type="checkbox" value="Formulário de contato"><span>Formulário de contato</span></label>
+          <label><input type="checkbox" value="Agendamento online"><span>Agendamento online</span></label>
+          <label><input type="checkbox" value="Feed do Instagram"><span>Feed do Instagram</span></label>
+          <label><input type="checkbox" value="Horário de funcionamento"><span>Horário de funcionamento</span></label>
+          <label><input type="checkbox" value="Vídeos"><span>Vídeos</span></label>
+          <label><input type="checkbox" value="Outro idioma"><span>Outro idioma</span></label>
+        </div></div>
+      <div class="f"><label for="extras">Algo mais que o site precisa ter?</label><textarea id="extras" name="extras"></textarea></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step" data-titulo="Visual">
+      <h2>4. Visual e identidade</h2>
+      <p class="sub">Para o site ter a cara da sua marca.</p>
+      <div class="f"><span class="lb">Vocês têm logo?</span>
+        <div class="opts" data-name="logo" data-radio>
+          <label><input type="radio" name="logo_r" value="Sim, tenho o arquivo"><span>Sim, tenho o arquivo</span></label>
+          <label><input type="radio" name="logo_r" value="Tenho, mas só em foto/print"><span>Tenho, mas só em foto/print</span></label>
+          <label><input type="radio" name="logo_r" value="Não tenho"><span>Não tenho</span></label>
+        </div></div>
+      <div class="f"><label for="cores">Cores da marca</label><input type="text" id="cores" name="cores" placeholder="Ex.: preto e dourado, azul-marinho…"></div>
+      <div class="f"><span class="lb">Estilo que combina com vocês</span>
+        <div class="opts" data-name="estilo">
+          <label><input type="checkbox" value="Moderno"><span>Moderno</span></label>
+          <label><input type="checkbox" value="Minimalista / clean"><span>Minimalista / clean</span></label>
+          <label><input type="checkbox" value="Elegante / sofisticado"><span>Elegante / sofisticado</span></label>
+          <label><input type="checkbox" value="Divertido / colorido"><span>Divertido / colorido</span></label>
+          <label><input type="checkbox" value="Sério / corporativo"><span>Sério / corporativo</span></label>
+          <label><input type="checkbox" value="Rústico / artesanal"><span>Rústico / artesanal</span></label>
+        </div></div>
+      <div class="f"><label for="referencias">Sites que você gosta (de qualquer ramo)</label><textarea id="referencias" name="referencias" placeholder="Cole os links e diga o que gostou em cada um."></textarea></div>
+      <div class="f"><label for="evitar">Algo que você NÃO quer no site?</label><textarea id="evitar" name="evitar"></textarea></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="step" data-titulo="Conteúdo">
+      <h2>5. Conteúdo, domínio e prazo</h2>
+      <p class="sub">Últimos detalhes.</p>
+      <div class="f"><span class="lb">Textos do site</span>
+        <div class="opts" data-name="textos" data-radio>
+          <label><input type="radio" name="textos_r" value="Eu mando os textos"><span>Eu mando os textos</span></label>
+          <label><input type="radio" name="textos_r" value="Mando o básico e vocês melhoram"><span>Mando o básico e vocês melhoram</span></label>
+          <label><input type="radio" name="textos_r" value="Quero que vocês escrevam"><span>Quero que vocês escrevam</span></label>
+        </div></div>
+      <div class="f"><span class="lb">Fotos</span>
+        <div class="opts" data-name="fotos" data-radio>
+          <label><input type="radio" name="fotos_r" value="Tenho boas fotos"><span>Tenho boas fotos</span></label>
+          <label><input type="radio" name="fotos_r" value="Tenho poucas fotos"><span>Tenho poucas fotos</span></label>
+          <label><input type="radio" name="fotos_r" value="Usar imagens de banco"><span>Usar imagens de banco</span></label>
+        </div></div>
+      <div class="f"><label for="arquivos">Link com logo, fotos e textos (Google Drive, Dropbox…)</label><input type="url" id="arquivos" name="arquivos" placeholder="https://"><small>Se preferir, mande depois pelo WhatsApp.</small></div>
+      <div class="g2">
+        <div class="f"><label for="dominio">Já tem domínio (www)?</label><input type="text" id="dominio" name="dominio" placeholder="Ex.: suaempresa.com.br ou 'não tenho'"></div>
+        <div class="f"><label for="prazo">Para quando precisa?</label>
+          <select id="prazo" name="prazo"><option value="">Sem pressa</option><option>O quanto antes</option><option>Em até 2 semanas</option><option>Em até 1 mês</option><option>Tenho uma data específica (escrevo abaixo)</option></select></div>
+      </div>
+      <div class="g2">
+        <div class="f"><label for="endereco">Endereço que aparece no site</label><input type="text" id="endereco" name="endereco"></div>
+        <div class="f"><label for="horario">Horário de funcionamento</label><input type="text" id="horario" name="horario" placeholder="Seg a sex 9h–19h, sáb 9h–14h"></div>
+      </div>
+      <div class="f"><label for="obs">Mais alguma coisa?</label><textarea id="obs" name="obs"></textarea></div>
+      <div class="f"><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13.5px;color:var(--mut)"><input type="checkbox" id="lgpd" required style="margin-top:4px"> Autorizo a Alderige Solutions a usar estas informações para criar meu site e entrar em contato comigo.</label><div class="err">É preciso autorizar para enviar</div></div>
+    </section>
+
+    <!-- fim -->
+    <section class="step" id="fim">
+      <div class="ok"><div class="ic">✓</div><h2>Recebemos tudo!</h2>
+        <p class="sub" id="fimMsg">Obrigado! Vamos analisar o briefing e te chamar no WhatsApp com os próximos passos.</p></div>
+      <div class="resumo" id="resumo"></div>
+      <div class="nav" style="justify-content:center;flex-wrap:wrap"><button type="button" class="wa" id="btnWa" hidden>Enviar resumo pelo WhatsApp</button><button type="button" id="btnCopiar">Copiar resumo</button></div>
+    </section>
+
+    <div class="nav" id="nav">
+      <button type="button" id="voltar">Voltar</button>
+      <button type="button" class="p" id="avancar">Continuar</button>
+    </div>
+    <p class="err" id="erroEnvio" style="text-align:center"></p>
+  </form>
+
+  <footer>Alderige Solutions · <a id="siteLink" href="#" target="_blank" rel="noopener">site</a></footer>
+</div>
+
+<script src="config.js"></script>
+<script>
+(() => {
+  const C = window.BRIEFING_CONFIG || {}
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)]
+  const form = $('#form'), steps = $$('.step:not(#fim)'), fim = $('#fim')
+  let atual = 0
+  $('#siteLink').href = C.SITE || '#'
+
+  // pré-preenche com os dados do link enviado ao cliente
+  const q = new URLSearchParams(location.search)
+  if (q.get('empresa')) form.empresa.value = q.get('empresa')
+  if (q.get('plano')) form.plano.value = q.get('plano')
+  if (q.get('lead')) form.lead_id.value = q.get('lead')
+  if (q.get('empresa')) $('#intro').textContent = `Que bom ter a ${q.get('empresa')} com a gente! Responda com calma — leva uns 5 minutos. Se não souber algo, pode deixar em branco.`
+
+  // rascunho local para não perder o que já foi preenchido
+  const KEY = 'briefing-' + (q.get('lead') || 'x')
+  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s) restaurar(s) } catch {}
+  form.addEventListener('input', () => { try { localStorage.setItem(KEY, JSON.stringify(coletar())) } catch {} })
+
+  $('#prog').innerHTML = steps.map(() => '<i></i>').join('')
+  const mostrar = (i) => {
+    steps.forEach((s, j) => s.classList.toggle('on', j === i))
+    $$('#prog i').forEach((b, j) => b.classList.toggle('on', j <= i))
+    $('#voltar').style.visibility = i ? 'visible' : 'hidden'
+    $('#avancar').textContent = i === steps.length - 1 ? 'Enviar briefing' : 'Continuar'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  mostrar(0)
+
+  function valida(sec) {
+    let ok = true
+    $$('[required]', sec).forEach((el) => {
+      const f = el.closest('.f')
+      let v = el.type === 'checkbox' ? el.checked : el.value.trim()
+      if (el.type === 'tel') v = el.value.replace(/\D/g, '').length >= 10
+      f.classList.toggle('invalid', !v); if (!v) ok = false
+    })
+    if (!ok) $('.invalid input, .invalid select', sec)?.focus()
+    return ok
+  }
+
+  function coletar() {
+    const d = {}
+    $$('input[name]:not([type=radio]):not([type=checkbox]), select[name], textarea[name]', form).forEach((el) => { if (el.name !== '_hp') d[el.name] = el.value.trim() })
+    $$('.opts[data-name]', form).forEach((g) => {
+      const vals = $$('input:checked', g).map((i) => i.value)
+      d[g.dataset.name] = g.hasAttribute('data-radio') ? (vals[0] || '') : vals
+    })
+    return d
+  }
+  function restaurar(d) {
+    Object.entries(d).forEach(([k, v]) => {
+      const g = $(`.opts[data-name="${k}"]`)
+      if (g) { $$('input', g).forEach((i) => (i.checked = [].concat(v).includes(i.value))); return }
+      const el = form.elements[k]; if (el && v && !(k === 'empresa' && el.value)) el.value = v
+    })
+  }
+
+  const ROT = { lead_id: 'Lead nº', responsavel: 'Responsável', empresa: 'Empresa', whatsapp: 'WhatsApp', email: 'E-mail', ramo: 'Ramo', cidade: 'Cidade', plano: 'Plano', instagram: 'Instagram',
+    objetivos: 'Objetivos', publico: 'Público', diferenciais: 'Diferenciais', servicos: 'Serviços/produtos', paginas: 'Páginas', recursos: 'Recursos', extras: 'Extras',
+    logo: 'Logo', cores: 'Cores', estilo: 'Estilo', referencias: 'Referências', evitar: 'Evitar', textos: 'Textos', fotos: 'Fotos', arquivos: 'Arquivos', dominio: 'Domínio',
+    prazo: 'Prazo', endereco: 'Endereço', horario: 'Horário', obs: 'Observações' }
+  const resumo = (d) => Object.entries(ROT).map(([k, r]) => { const v = [].concat(d[k] || []).join(', '); return v ? `${r}: ${v}` : '' }).filter(Boolean).join('\n')
+
+  $('#voltar').onclick = () => { if (atual > 0) mostrar(--atual) }
+  $('#avancar').onclick = async () => {
+    if (!valida(steps[atual])) return
+    if (atual < steps.length - 1) return mostrar(++atual)
+    if (form._hp.value) return // robô
+    const d = coletar()
+    const txt = resumo(d)
+    const btn = $('#avancar'); btn.disabled = true; btn.textContent = 'Enviando…'
+    $('#erroEnvio').style.display = 'none'
+    let enviado = false
+    if (C.ENDPOINT) {
+      try {
+        const corpo = { ...d, resumo: txt, _subject: `Briefing do site — ${d.empresa}`, subject: `Briefing do site — ${d.empresa}`, from_name: d.responsavel }
+        if (C.WEB3FORMS_KEY) corpo.access_key = C.WEB3FORMS_KEY
+        Object.keys(corpo).forEach((k) => Array.isArray(corpo[k]) && (corpo[k] = corpo[k].join(', ')))
+        const r = await fetch(C.ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(corpo), signal: AbortSignal.timeout(20000) })
+        enviado = r.ok
+      } catch {}
+    }
+    btn.disabled = false
+    if (C.ENDPOINT && !enviado) {
+      btn.textContent = 'Tentar de novo'
+      const e = $('#erroEnvio'); e.style.display = 'block'
+      e.textContent = 'Não conseguimos enviar agora. Tente de novo' + (C.WHATSAPP ? ' — ou envie o resumo pelo WhatsApp no fim.' : '.')
+      if (!C.WHATSAPP) return
+    }
+    try { localStorage.removeItem(KEY) } catch {}
+    steps.forEach((s) => s.classList.remove('on')); fim.classList.add('on'); $('#nav').hidden = true; $('#prog').hidden = true
+    $('#resumo').textContent = txt
+    if (!enviado) $('#fimMsg').textContent = 'Quase lá! Toque no botão abaixo para nos mandar o resumo pelo WhatsApp.'
+    if (C.WHATSAPP) {
+      const b = $('#btnWa'); b.hidden = false
+      b.onclick = () => window.open(`https://wa.me/${C.WHATSAPP}?text=${encodeURIComponent('Briefing do site\n\n' + txt)}`, '_blank')
+    }
+    $('#btnCopiar').onclick = async () => { try { await navigator.clipboard.writeText(txt); $('#btnCopiar').textContent = 'Copiado ✓' } catch {} }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+})()
+</script>
+</body>
+</html>
